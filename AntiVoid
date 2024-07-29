@@ -1,0 +1,30 @@
+-- local anti void made by Glory
+local baseplateWidth = 2480  -- Width of the baseplate
+local baseplateDepth = 2480  -- Depth of the baseplate
+local baseplateHeight = 16   -- Thickness of the baseplate
+
+-- Function to create a part
+local function createBaseplate(width, depth, height, position, color, anchored)
+    local baseplate = Instance.new("Part")
+    baseplate.Name = "Baseplate"
+    baseplate.Size = Vector3.new(width, height, depth)
+    baseplate.Position = position
+    baseplate.Color = color
+    baseplate.Anchored = anchored
+    baseplate.Parent = workspace
+    return baseplate
+end
+
+-- Remove any existing baseplate
+for _, obj in pairs(workspace:GetChildren()) do
+    if obj:IsA("Part") and obj.Name == "Baseplate" then
+        obj:Destroy()
+    end
+end
+
+-- Create a new baseplate with specified dimensions
+local baseplatePosition = Vector3.new(0, baseplateHeight / 2, 0)
+local baseplateColor = Color3.fromRGB(79, 121, 66)  -- Green Color
+createBaseplate(baseplateWidth, baseplateDepth, baseplateHeight, baseplatePosition, baseplateColor, true)
+
+print("Baseplate created with dimensions: Width = " .. baseplateWidth .. ", Depth = " .. baseplateDepth .. ", Height = " .. baseplateHeight)
